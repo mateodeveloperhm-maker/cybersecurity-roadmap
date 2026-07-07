@@ -1,5 +1,4 @@
 
-
 -- BRUTE FORCE 
 
 -- Objetivo: 
@@ -51,3 +50,9 @@ LIMIT 3;
 -- Tip de Analista: Vas a necesitar usar la función COUNT(DISTINCT pais) en tu cláusula HAVING.
 
 
+SELECT usuario, COUNT(DISTINCT pais) AS paises_distintos, COUNT(*) AS total_conexiones_exitosas
+FROM vpn_logs
+WHERE estado = 'EXITO'
+GROUP BY usuario
+HAVING COUNT(DISTINCT pais) > 1
+ORDER BY paises_distintos DESC;
